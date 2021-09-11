@@ -1,13 +1,12 @@
 package com.example.focusstart.api
 
-import com.google.gson.JsonObject
-import retrofit2.Call
+import com.example.focusstart.model.ResponseApi
 import retrofit2.http.GET
 
 interface CurrencyAPI {
 
     @GET("daily_json.js")
-    suspend fun getCurrency(): Call<JsonObject>
+    suspend fun getCurrency(): ResponseApi
 
 
     companion object {

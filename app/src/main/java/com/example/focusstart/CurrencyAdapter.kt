@@ -2,19 +2,15 @@ package com.example.focusstart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.focusstart.databinding.ItemLayoutBinding
 import com.example.focusstart.model.Currency
 
 class CurrencyAdapter(private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<CurrencyAdapter.CurrencyViewHolder>() {
+    ListAdapter<Currency, CurrencyAdapter.CurrencyViewHolder>(CurrencyComparator()) {
 
-    var currency = mutableListOf<Currency>()
-
-    fun setCurrencyList(currency: List<Currency>) {
-        this.currency = currency.toMutableList()
-        notifyDataSetChanged()
-    }
 
     inner class CurrencyViewHolder(private val binding: ItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +19,7 @@ class CurrencyAdapter(private val listener: OnItemClickListener) :
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val item = currency[position]
+                    val item = getItem(position)
                     listener.onItemClick(item)
                 }
             }
@@ -48,10 +44,19 @@ class CurrencyAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
-        val currentItem = currency[position]
+        val currentItem = getItem(position)
 
         holder.bind(currentItem)
     }
 
-    override fun getItemCount() = currency.size
+    class CurrencyComparator() : DiffUtil.ItemCallback<Currency>() {
+
+        override fun areItemsTheSame(oldItem: Currency, newItem: Currency) =
+            oldItem.ID == newItem.ID
+
+        override fun areContentsTheSame(oldItem: Currency, newItem: Currency) =
+            oldItem == newItem
+    }
+
+
 }

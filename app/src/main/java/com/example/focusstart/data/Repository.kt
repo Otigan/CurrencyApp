@@ -1,10 +1,10 @@
 package com.example.focusstart.data
 
+import androidx.room.withTransaction
 import com.example.focusstart.api.CurrencyAPI
 import com.example.focusstart.util.networkBoundResource
 import javax.inject.Inject
 import javax.inject.Singleton
-
 
 @Singleton
 class Repository @Inject constructor(
@@ -19,13 +19,17 @@ class Repository @Inject constructor(
             currencyDao.getAllCurrencies()
         },
         fetch = {
-            api.
+            api.getCurrency()
         },
         saveFetchResult = {
-
+            db.withTransaction {
+                currencyDao.deleteAllCurrencies()
+                val valute = it.Valute
+                currencyDao.insertCurrencies(valute.getCurrencies())
+            }
+        },
+        shouldFetch = {
+            it == null
         }
     )
-
-    suspend fun getRate() = api.getCurrency()
-
 }

@@ -21,21 +21,26 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         _binding = FragmentConverterBinding.bind(view)
 
         binding.btnConvert.setOnClickListener {
-            checkSum(binding.ammToConvert)
+            if (checkSum(binding.ammToConvert)) {
+                val sum = binding.ammToConvert.text.toString()
+                val result = args.currency.Value * sum.toInt()
+                binding.textViewConvResult.text = result.toString()
+                binding.ammToConvert.clearFocus()
+            }
 
         }
 
     }
 
 
-    fun checkSum(editText: EditText) {
+    fun checkSum(editText: EditText): Boolean {
         val sum = editText.text.toString()
-        if (sum.isEmpty()) {
+        editText.requestFocus()
+        return if (sum.isEmpty()) {
             Toast.makeText(context, "Введите сумму в рублях", Toast.LENGTH_SHORT).show()
+            false
         } else {
-            val result = args.currency.Value * sum.toInt()
-            binding.textViewConvResult.text = result.toString()
-            editText.requestFocus()
+            true
         }
     }
 

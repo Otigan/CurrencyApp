@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface CurrencyAPI {
 
     @GET("daily_json.js")
-    fun getCurrency(): Call<JsonObject>
+    suspend fun getCurrency(): Call<JsonObject>
 
 
     companion object {

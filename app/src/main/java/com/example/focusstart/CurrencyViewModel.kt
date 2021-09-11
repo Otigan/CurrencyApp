@@ -3,11 +3,10 @@ package com.example.focusstart
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.focusstart.data.Repository
 import com.example.focusstart.model.Currency
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import retrofit2.Call

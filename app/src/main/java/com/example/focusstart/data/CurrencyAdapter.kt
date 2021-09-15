@@ -1,4 +1,4 @@
-package com.example.focusstart
+package com.example.focusstart.data
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

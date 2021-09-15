@@ -27,9 +27,6 @@ class Repository @Inject constructor(
                 val valute = it.Valute
                 currencyDao.insertCurrencies(valute.getCurrencies())
             }
-        },
-        shouldFetch = {
-            it == null
         }
     )
 }

@@ -1,4 +1,4 @@
-package com.example.focusstart
+package com.example.focusstart.features.rate
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -7,7 +7,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CurrencyViewModel @Inject constructor(repo: Repository) : ViewModel() {
+class CurrencyViewModel @Inject constructor(
+    repo: Repository,
+) : ViewModel() {
 
-    val currencyRate = repo.getCurrencies().asLiveData()
+
+    var currencyRate = repo.getCurrencies().asLiveData()
+
+
 }

@@ -37,11 +37,10 @@ class MainActivity : AppCompatActivity() {
             setOf(R.id.currencyFragment)
         )
 
+
         setSupportActionBar(binding.toolbar)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.bottomNavigation.setupWithNavController(navController)
 
     }
 

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/brave/AndroidStudioProjects/FocusStart/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.196875" />
         <entry key="..\:/Users/brave/AndroidStudioProjects/FocusStart/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/brave/AndroidStudioProjects/FocusStart/app/src/main/res/layout/fragment_converter.xml" value="0.1765625" />
         <entry key="..\:/Users/brave/AndroidStudioProjects/FocusStart/app/src/main/res/layout/fragment_currency.xml" value="0.1765625" />

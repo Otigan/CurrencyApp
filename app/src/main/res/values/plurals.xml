@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="russian_plural">
+        <item quantity="zero">рублей</item>
+        <item quantity="one">%6.3f рубль</item>
+        <item quantity="two">%6.3f рубля</item>
+        <item quantity="few">%6.3f рубля</item>
+        <item quantity="many">%6.3f рублей</item>
+        <item quantity="other">%6.3f рубля</item>
+    </plurals>
+</resources>

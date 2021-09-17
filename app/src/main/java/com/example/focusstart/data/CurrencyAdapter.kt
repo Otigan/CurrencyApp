@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.focusstart.R
 import com.example.focusstart.databinding.ItemLayoutBinding
 import com.example.focusstart.model.Currency
 
@@ -27,8 +28,12 @@ class CurrencyAdapter(private val listener: OnItemClickListener) :
 
         fun bind(currency: Currency) {
             binding.apply {
-                currencyName.text = currency.Name
-                currencyValue.text = currency.Value.toString()
+                currencyName.text = currency.Nominal.toString() + " " + currency.Name
+                currencyValue.text = this.root.context.resources.getQuantityString(
+                    R.plurals.russian_plural,
+                    currency.Value.toInt(),
+                    currency.Value
+                )
             }
         }
     }

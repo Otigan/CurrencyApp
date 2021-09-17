@@ -1,12 +1,13 @@
 package com.example.focusstart.features.converter
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.focusstart.R
@@ -26,24 +27,36 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         _binding = FragmentConverterBinding.bind(view)
 
         binding.textViewConvResult.text = savedInstanceState?.getString("CONVERTED")
+        binding.currencyTo.text = args.currency.CharCode
+        val rate = getString(
+            R.string.converter_rate,
+            args.currency.Nominal,
+            args.currency.CharCode,
+            args.currency.Value
+        )
+        binding.currencyRate.text = rate
 
 
-        binding.btnConvert.setOnClickListener {
-            if (checkSum(binding.ammToConvert)) {
-                val sum = binding.ammToConvert.text.toString()
-                val result = args.currency.Value.times(sum.toLong())
+        binding.textViewSum.editText?.doAfterTextChanged {
+            val sum = binding.textViewSum.editText?.text.toString().trim()
+            if (sum.isNotEmpty()) {
+                var prom = args.currency.Value.div(args.currency.Nominal)
+                prom = 1.0 / prom
+                val result = prom.times(sum.toLong())
                 val dec = DecimalFormat("#,###.##")
                 val res = dec.format(result)
                 binding.textViewConvResult.text = res
-                binding.ammToConvert.onEditorAction(EditorInfo.IME_ACTION_DONE)
+            } else {
+                binding.textViewConvResult.text = ""
             }
         }
     }
 
 
-    fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
+    private fun closeSoftKeyboard(context: Context, v: View) {
+        val iMm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        iMm.hideSoftInputFromWindow(v.windowToken, 0)
+        v.clearFocus()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -51,14 +64,21 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         outState.putString("CONVERTED", binding.textViewConvResult.text.toString())
     }
 
-    fun checkSum(editText: EditText): Boolean {
+    private fun checkSum(editText: EditText): Boolean {
         val sum = editText.text.toString()
-        editText.requestFocus()
-        return if (sum.isEmpty()) {
-            Toast.makeText(context, "Введите сумму в рублях", Toast.LENGTH_SHORT).show()
-            false
-        } else {
-            true
+        return when {
+            sum.isEmpty() -> {
+                Toast.makeText(context, "Введите сумму в рублях", Toast.LENGTH_SHORT).show()
+                false
+            }
+            sum.length > 19 -> {
+                Toast.makeText(context, "Введите сумму меньше", Toast.LENGTH_SHORT).show()
+                false
+            }
+            else -> {
+                true
+            }
+
         }
     }
 

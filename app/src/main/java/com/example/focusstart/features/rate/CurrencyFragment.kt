@@ -52,7 +52,7 @@ class CurrencyFragment() : Fragment(R.layout.fragment_currency),
 
     override fun onItemClick(item: Currency) {
         val action =
-            CurrencyFragmentDirections.actionCurrencyFragmentToConverterFragment(item, item.Name)
+            CurrencyFragmentDirections.actionCurrencyFragmentToConverterFragment(item)
         findNavController().navigate(action)
 
     }

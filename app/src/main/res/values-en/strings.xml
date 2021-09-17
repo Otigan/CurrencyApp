@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FocusStart</string>
+    <string name="rub">RUB</string>
+    <string name="text_view_sum" translatable="false">Enter the amount</string>
+    <string name="ruble_rate">Ruble\'s exchange rate</string>
+    <string name="converting">Converting</string>
+    <string name="from_conv">From</string>
+    <string name="to_conv">To</string>
+</resources>

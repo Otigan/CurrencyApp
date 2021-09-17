@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FocusStart</string>
+    <string name="text_view_sum">Введите сумму</string>
+    <string name="rub">RUB</string>
+    <string name="ruble_rate">Курс рубля</string>
+    <string name="converting">Конвертация</string>
+    <string name="from_conv">Из</string>
+    <string name="to_conv">В</string>
+    <string name="converter_rate" translatable="false">%1$d %2$s = %3$6.3f RUB</string>
 </resources>

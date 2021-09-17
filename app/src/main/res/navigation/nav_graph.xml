@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/currencyFragment"
         android:name="com.example.focusstart.features.rate.CurrencyFragment"
-        android:label="Курс рубля"
-        tools:layout="@layout/fragment_currency" >
+        android:label="@string/ruble_rate"
+        tools:layout="@layout/fragment_currency">
         <action
             android:id="@+id/action_currencyFragment_to_converterFragment"
             app:destination="@id/converterFragment" />
@@ -17,13 +17,10 @@
     <fragment
         android:id="@+id/converterFragment"
         android:name="com.example.focusstart.features.converter.ConverterFragment"
-        android:label="Перевод в {name}"
+        android:label="@string/converting"
         tools:layout="@layout/fragment_converter">
         <argument
             android:name="currency"
             app:argType="com.example.focusstart.model.Currency" />
-        <argument
-            android:name="name"
-            app:argType="string" />
     </fragment>
 </navigation>

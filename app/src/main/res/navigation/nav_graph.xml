@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_currency">
         <action
             android:id="@+id/action_currencyFragment_to_converterFragment"
-            app:destination="@id/converterFragment" />
+            app:destination="@id/converterFragment"
+            app:enterAnim="@anim/enter_anim"
+            app:exitAnim="@anim/exit_anim"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/converterFragment"

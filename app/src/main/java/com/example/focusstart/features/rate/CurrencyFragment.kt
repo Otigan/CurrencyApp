@@ -37,7 +37,6 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency),
             recyclerViewCurrency.apply {
                 setHasFixedSize(true)
                 this.adapter = this@CurrencyFragment.adapter
-
             }
             currencyViewModel.currencyRate.observe(viewLifecycleOwner) { result ->
                 adapter.submitList(result.data)

@@ -28,7 +28,11 @@ class CurrencyAdapter(private val listener: OnItemClickListener) :
 
         fun bind(currency: Currency) {
             binding.apply {
-                currencyName.text = currency.Nominal.toString() + " " + currency.Name
+                currencyName.text = this.root.context.resources.getString(
+                    R.string.currency_name,
+                    currency.Nominal,
+                    currency.Name
+                )
                 currencyValue.text = this.root.context.resources.getQuantityString(
                     R.plurals.russian_plural,
                     currency.Value.toInt(),
@@ -54,7 +58,7 @@ class CurrencyAdapter(private val listener: OnItemClickListener) :
         holder.bind(currentItem)
     }
 
-    class CurrencyComparator() : DiffUtil.ItemCallback<Currency>() {
+    class CurrencyComparator : DiffUtil.ItemCallback<Currency>() {
 
         override fun areItemsTheSame(oldItem: Currency, newItem: Currency) =
             oldItem.ID == newItem.ID

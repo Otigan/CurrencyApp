@@ -11,8 +11,5 @@ class CurrencyViewModel @Inject constructor(
     repo: Repository,
 ) : ViewModel() {
 
-
     var currencyRate = repo.getCurrencies().asLiveData()
-
-
 }

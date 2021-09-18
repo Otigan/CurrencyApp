@@ -6,7 +6,6 @@ import androidx.lifecycle.asLiveData
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.focusstart.data.Repository
-import com.example.focusstart.features.rate.CurrencyViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import retrofit2.HttpException

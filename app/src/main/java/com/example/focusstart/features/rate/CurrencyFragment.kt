@@ -10,21 +10,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.focusstart.data.CurrencyAdapter
 import com.example.focusstart.R
+import com.example.focusstart.data.CurrencyAdapter
 import com.example.focusstart.databinding.FragmentCurrencyBinding
 import com.example.focusstart.model.Currency
 import com.example.focusstart.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CurrencyFragment() : Fragment(R.layout.fragment_currency),
+class CurrencyFragment : Fragment(R.layout.fragment_currency),
     CurrencyAdapter.OnItemClickListener {
 
     private val currencyViewModel by viewModels<CurrencyViewModel>()
     private var _binding: FragmentCurrencyBinding? = null
     private val binding get() = _binding!!
-    lateinit var adapter: CurrencyAdapter
+    private lateinit var adapter: CurrencyAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,7 +68,6 @@ class CurrencyFragment() : Fragment(R.layout.fragment_currency),
 
         when (item.itemId) {
             R.id.action_refresh -> {
-
                 binding.apply {
                     currencyViewModel.currencyRate.observe(viewLifecycleOwner) { result ->
                         adapter.submitList(result.data)
